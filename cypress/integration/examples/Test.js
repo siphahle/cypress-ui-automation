@@ -30,11 +30,12 @@ describe('My First Test', function()
 
         this.data.productName
 
-        this.data.productName.array1.array.forEach(element => {
+        this.data.productName.forEach(element => {
 
             cy.selectProduct(element)
 
         });
+        cy.pause()
       
     })
 })
