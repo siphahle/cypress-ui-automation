@@ -1,5 +1,9 @@
 //cypress - Spec
 ///<reference types ="Cypress" />
+
+import HomePage from "../pageObjects/HomePage"
+import ProductPage from "../pageObjects/ProductPage"
+
 describe('My First Test', function()
 
 {
@@ -19,13 +23,15 @@ describe('My First Test', function()
 
     it('Does not do much!', function(){
        
+       const homePage = new HomePage()
         cy.visit("https://rahulshettyacademy.com/angularpractice/")
-        cy.get(':nth-child(1) > .form-control').type(this.data.name)
-        cy.get('select').select(this.data.gender)
-        cy.get(':nth-child(4) > .ng-untouched').should('have.value',this.data.name)
-        cy.get(':nth-child(1) > .form-control').should('have.attr','minlength','2')
-        cy.get('#inlineRadio3').should('be.disabled')
-        cy.get(':nth-child(2) > .nav-link').click()
+
+        homePage.getEditBox().type(this.data.name)
+        homePage.getGender().select(this.data.gender)
+        homePage.getTwoWayDataBinding().should('have.value',this.data.name)
+        homePage.getEditBox().should('have.attr','minlength','2')
+        homePage.getEntrepreneurRadio3().should('be.disabled')
+        homePage.getShopTab().click()
 
 
         this.data.productName
@@ -35,7 +41,9 @@ describe('My First Test', function()
             cy.selectProduct(element)
 
         });
-        cy.pause()
+       
+        const productPage = new ProductPage()
+        productPage.checoutbtn().click()
       
     })
 })
