@@ -14,7 +14,7 @@
     cy.get('h4.card-title').each(($el,index, $list) =>{
 
 
-        if($el.text().includes('productName')) 
+        if($el.text().includes('Blackberry')) 
          {
              cy.get('button.btn.btn-info').eq(index).click()
          }
